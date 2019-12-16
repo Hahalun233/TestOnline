@@ -1,8 +1,7 @@
 package DAO;
 
-import beans.Teacher;
+import User.Teacher;
 import util.DBUtil;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,8 +31,8 @@ public class TeacherDao {
         String sql = "insert teacher(id,teacher_name,teacher_password) values(?,?,?)";
         PreparedStatement prepStmt = connection.prepareStatement(sql);
         prepStmt.setInt(1,registerTeacher.getId());
-        prepStmt.setString(1,registerTeacher.getTeacher_name());
-        prepStmt.setString(1,registerTeacher.getTeacher_password());
+        prepStmt.setString(2,registerTeacher.getTeacher_name());
+        prepStmt.setString(3,registerTeacher.getTeacher_password());
         prepStmt.execute();
         prepStmt.close();
         connection.close();
@@ -42,7 +41,7 @@ public class TeacherDao {
 
     public Teacher register_check(Teacher registerTeacher) throws SQLException {
         Connection connect = DBUtil.getConnection();
-        String sql = "select * from teacher where teacher_id = ?";
+        String sql = "select * from teacher where id = ?";
         PreparedStatement prepStmt = connect.prepareStatement(sql);
         prepStmt.setInt(1,registerTeacher.getId());
         ResultSet rs = prepStmt.executeQuery();

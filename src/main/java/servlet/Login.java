@@ -1,7 +1,8 @@
 package servlet;
 
 import DAO.TeacherDao;
-import beans.Teacher;
+import User.Teacher;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet( value = "/loginServlet")
+
+@WebServlet("/Login")
 public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,8 +53,6 @@ public class Login extends HttpServlet {
             //转发
             req.getRequestDispatcher("/question_select").forward(req,resp);
         }
-
-
     }
 
     @Override
