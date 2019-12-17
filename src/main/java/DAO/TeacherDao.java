@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class TeacherDao {
     public Teacher login(Teacher loginTeacher) throws SQLException {
         Connection connection = DBUtil.getConnection();
-        String sql = "select * from Teacher where id = ? and password = ?";
+        String sql = "select * from Teacher where id = ? and teacher_password = ?";
         PreparedStatement prepStmt = connection.prepareStatement(sql);
         prepStmt.setInt(1,loginTeacher.getId());
         prepStmt.setString(2,loginTeacher.getTeacher_password());
@@ -49,8 +49,8 @@ public class TeacherDao {
         if(rs.next()){
             teacher.setId(rs.getInt("id"));
         }
-        rs.close();
         prepStmt.close();
+        rs.close();
         connect.close();
         return teacher;
     }

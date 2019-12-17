@@ -20,9 +20,6 @@ public class Login extends HttpServlet {
         //设置编码
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
-
-        req.setCharacterEncoding("utf-8");
-        resp.setHeader("Content-type","text/html;charset=UTF-8");
         String idStr = req.getParameter("id");
         int id = 0;
         if(idStr == null || idStr.equals("")) {
@@ -30,17 +27,15 @@ public class Login extends HttpServlet {
         } else {
             id = Integer.parseInt(idStr);
         }
-        String teacher_name = req.getParameter("teacher_name");
         String teacher_password = req.getParameter("teacher_password");
 
         //封装Teacher对象
-        Teacher loginteacher = null;
+        Teacher loginteacher = new Teacher();
         loginteacher.setId(id);
-        loginteacher.setTeacher_name(teacher_name);
         loginteacher.setTeacher_password(teacher_password);
 
         TeacherDao dao = new TeacherDao();
-        Teacher teacher = null;
+        Teacher teacher = new Teacher();
         try {
             teacher = dao.login(loginteacher);
         } catch (SQLException e) {
